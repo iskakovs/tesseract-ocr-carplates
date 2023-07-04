@@ -23,7 +23,7 @@ This project aims to detect and extract license plate information from car image
 1. Clone the repository:
 
 ```shell
-git clone https://github.com/your-username/car-plate-detection.git
+git clone https://github.com/iskakovs/car-plate-detection.git
 ```
 
 2. Install the required dependencies:
