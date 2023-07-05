@@ -30,7 +30,7 @@ def enlarge_img(image, scale_percent):
 
 def main():
     carplate_img_rgb = open_img(img_path='cars/1.jpg')
-    carplate_haar_cascade = cv2.CascadeClassifier('haar_cascades/haarcascade_russian_plate_number.xml')
+    carplate_haar_cascade = cv2.CascadeClassifier('haar_cascades/haarcascade_plate_number.xml')
 
     carplate_extract_img = carplate_extract(carplate_img_rgb, carplate_haar_cascade)
     carplate_extract_img = enlarge_img(carplate_extract_img,150)
