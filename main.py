@@ -27,3 +27,25 @@ def enlarge_img(image, scale_percent):
     resized_image = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
 
     return resized_image
+
+def main():
+    carplate_img_rgb = open_img(img_path='cars/1.jpg')
+    carplate_haar_cascade = cv2.CascadeClassifier('haar_cascades/haarcascade_russian_plate_number.xml')
+
+    carplate_extract_img = carplate_extract(carplate_img_rgb, carplate_haar_cascade)
+    carplate_extract_img = enlarge_img(carplate_extract_img,150)
+    plt.imshow(carplate_extract_img)
+    #plt.show()
+
+    carplate_extract_img_gray = cv2.cvtColor(carplate_extract_img, cv2.COLOR_RGB2GRAY)
+    plt.axis('off')
+    plt.imshow(carplate_extract_img_gray, cmap='gray')
+    plt.show()
+
+    print('Номер авто: ', pytesseract.image_to_string(
+        carplate_extract_img_gray,
+        config='--psm 6 --oem 3 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+    )
+
+if __name__ == '__main__':
+    main()
